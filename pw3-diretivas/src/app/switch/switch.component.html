@@ -1,0 +1,11 @@
+<button (click)="incrementar()">Incrementar</button>
+
+<p>{{numero}}</p>
+
+@switch (numero) {
+  @case (1) { <p>UM</p> }
+  @case (2) { <p>DOIS</p> }
+  @case (3) { <p>TRÊS</p> }
+  @case (3) { <p>QUATRO</p> }
+  @default { <p>Outro número</p> }
+}

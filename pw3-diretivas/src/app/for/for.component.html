@@ -1,0 +1,13 @@
+@for(item of professores; track $index){
+  <li>
+    {{$index+1}} - {{item}}
+    <button (click)="remover($index)">Remover</button>
+  </li>
+}
+
+<br>
+<input type="text" placeholder="Nome novo" id="NomeInput">
+<button (click)="adicionar()">Adicionar</button>
+<br>
+<!-- <audio id="myAudio" src="../assets/fart.mp3"></audio> -->
+<button (click)="som()">Tocar musica</button>

@@ -1,0 +1,6 @@
+<div class="container">
+  <app-imagem [foto]="foto"></app-imagem>
+<app-botao (fotoEvent)="processarFoto($event)" (exibirFraseEvent)="processarFrase($event)" (fraseAleatoriaEvent)="processarNumeroFrase($event)"></app-botao>
+<app-frases [exibir]="fraseExibir" [numeroFrasef]="numeroFrase" ></app-frases>
+</div>
+

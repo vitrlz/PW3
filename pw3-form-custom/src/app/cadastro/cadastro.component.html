@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>Usuário:
+    <input formControlName="username">
+    <div>
+        @if (form.get('username')?.errors?.['required'] && form.get('username')?.touched) {
+          <small>Nome é obrigatório</small>
+        }
+      </div>
+  </label>
+
+  <div formGroupName="passwords">
+    <label>Senha:
+      <input type="password" formControlName="password">
+      <div>
+        @if (form.get('passwords.password')?.errors?.['required'] && form.get('passwords.password')?.touched) {
+          <small>Senha é obrigatório</small>
+        }
+      </div>
+    </label>
+
+    <label>Confirmar senha:
+      <input type="password" formControlName="confirmPassword">
+      <div>
+        @if (form.get('passwords.confirmPassword')?.errors?.['required'] && form.get('passwords.confirmPassword')?.touched) {
+          <small>Confirmar senha é obrigatório</small>
+        }
+      </div>
+    </label>
+
+    @if(form.get('passwords')?.errors?.['senhasDiferentes'] && form.get('passwords')?.touched){
+      <div>
+        <small>As senhas são diferentes</small>
+      </div>
+    }
+
+
+  </div>
+
+  <button type="submit">Cadastrar</button>
+</form>

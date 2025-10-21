@@ -1,0 +1,25 @@
+<h1>Lista de Tarefas</h1>
+@if(botao){
+  <button (click)="mostrar()">Mostrar tudo</button>
+}@else{
+  <button (click)="mostrarConcluidas()">Mostrar concluídas</button>
+}
+
+<br>
+<br>
+
+@for(item of tarefas; track $index){
+
+  @if(mostrarTarefasConcluidas){
+    @if(item.concluido==true){
+      <li [hidden]="!mostrarTarefas">
+    {{item.id}} - {{item.nome}} - concluído
+      </li>
+    }
+  }@else{
+    <li [hidden]="!mostrarTarefas">
+      {{item.id}} - {{item.nome}} {{item.concluido ? ' - concluído' : ''}}
+    </li>
+  }
+
+}

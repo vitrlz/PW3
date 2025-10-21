@@ -1,5 +1,6 @@
 package br.com.etechas.tarefas.controller;
 
+
 import br.com.etechas.tarefas.dto.LoginRequestDTO;
 import br.com.etechas.tarefas.dto.LoginResponseDTO;
 import br.com.etechas.tarefas.security.JWTHolder;
@@ -18,17 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    private JWTHolder jwtHolder;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> autenticar(@RequestBody LoginRequestDTO loginRequest){
-        var autenticar = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.usuario(),loginRequest.senha()));
-        final String token = jwtHolder.generateToken((UserDetails) autenticar.getPrincipal());
+    @Autowired
+    private JWTHolder jwtHolder;
+
+    @PostMapping
+    public ResponseEntity<LoginResponseDTO> autenticar(
+            @RequestBody LoginRequestDTO loginRequest){
+        var autenticado = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.usuario(),
+                        loginRequest.senha()));
+        final String token = jwtHolder.generateToken((UserDetails) autenticado.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
-
 }

@@ -6,7 +6,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +27,7 @@ public class JWTHolder {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .claim("id", ((Usuario)userDetails).getId())
@@ -39,6 +37,7 @@ public class JWTHolder {
                 .signWith(signingKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
     public UserDetails getAuthenticated(String token) {
         var claims = Jwts.parserBuilder()
                 .setSigningKey(signingKey())
@@ -51,6 +50,4 @@ public class JWTHolder {
                 .username(claims.getSubject())
                 .build();
     }
-
-
 }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService  implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository repository;
@@ -46,6 +46,6 @@ public class UsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("Nome de usuario nao encontrado"));
+        return repository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Nome de usuario nao encontrado"));
     }
 }

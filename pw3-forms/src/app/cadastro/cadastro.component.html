@@ -1,0 +1,15 @@
+<div [hidden]="hidden">
+  <form [formGroup]="cadastroForm">
+    <label for="user">Usuário: </label>
+    <input id="user" type="text" formControlName="user"/>
+    <br/>
+    <label for="pass">Senha: </label>
+    <input id="pass" type="password" formControlName="pass"/>
+    <br/>
+    <button (click)="autenticar()">Autenticar</button>
+  </form>
+</div>
+
+<div [hidden]="!hidden">
+  <p>{{texto}}</p>
+</div>
